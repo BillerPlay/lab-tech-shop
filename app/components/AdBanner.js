@@ -9,6 +9,9 @@
 // It renders TWO banners so the page feels genuinely cluttered:
 //   1. a scrolling marquee strip across the top of the content
 //   2. a floating, blinking ad card pinned to the bottom-right corner
+"use client";
+
+import { usePremium } from "./PremiumContext.js";
 
 const MARQUEE_ADS = [
   "🔥 MEGA DEAL: buy 1 cable, get 0 free!",
@@ -19,6 +22,10 @@ const MARQUEE_ADS = [
 ];
 
 export default function AdBanner() {
+  const { isPremium } = usePremium();
+
+  if (isPremium) return null;
+
   return (
     <>
       {/* 1) Top marquee strip */}
